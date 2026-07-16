@@ -40,3 +40,9 @@ The first step is setting up your virtual hardware in the cloud.
    * Click **Create** $\rightarrow$ **Azure Virtual Machine**.
    * Select a lightweight, cost-effective Linux image (e.g., **Ubuntu Server 22.04 LTS**).
    * Set your administrator username (e.g., `breachpoint`).
+
+2. **Configure Administrator Account:**
+   * Under **Administrator account**, select **Password** as your authentication type.
+   * Set your administrator username (e.g., `breachpoint`).
+   * Enter a strong, secure password of your choice. Keep this safe, as you will need it to log into the system!
+   * (you can use the normal SSH key way, however I used this method because it's way more beginner friendly)
