@@ -135,3 +135,6 @@ Once the service is active, you can verify your web server is successfully recei
    ```text
    http://your-public-IP
    ```
+If everything is configured correctly, you will be greeted by the default **Apache2 Ubuntu Default Page**! This confirms your cloud virtual machine is fully serving web traffic to the public internet:
+
+![Apache Ubuntu Default Page](https://www.hostinger.com/tutorials/wp-content/uploads/sites/2/2024/04/apache-web-server-welcome-page-1024x600.png)
