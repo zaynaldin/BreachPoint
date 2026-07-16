@@ -329,3 +329,11 @@ Now that your server is fully online and secured with HTTPS, you can begin explo
 1.  **Set up a Web Application Firewall (WAF)** to protect your web application from common exploits.
 2.  **Configure basic SSH hardening** (such as disabling password authentication and using SSH keys only) to protect your terminal access.
 3.  **Implement automated server backups** to ensure your custom web directory `/var/www/html/` is always safe.
+
+---
+
+## 👥 Authors & License
+
+* **Zaynaldin Attia** (Student ID: `35997081`) - *Cybersecurity Student*
+
+This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) file for details.
