@@ -138,3 +138,37 @@ Once the service is active, you can verify your web server is successfully recei
 If everything is configured correctly, you will be greeted by the default **Apache2 Ubuntu Default Page**! This confirms your cloud virtual machine is fully serving web traffic to the public internet:
 
 ![Apache Ubuntu Default Page](https://www.hostinger.com/tutorials/wp-content/uploads/sites/2/2024/04/apache-web-server-welcome-page-1024x600.png)
+
+---
+
+### 📂 Phase 4: Uploading Your Web Files (The Easy GUI Way)
+
+While you can write code directly inside the Linux terminal using `nano`, it is much easier to design your HTML, CSS, and JavaScript files locally on your own computer and upload them using a graphical **SFTP (Secure File Transfer Protocol)** client like **FileZilla**.
+
+#### 1. Download an SFTP Client
+If you do not have one installed, download a free file transfer tool:
+* **Windows & macOS:** [Download FileZilla Client](https://filezilla-project.org/) or [WinSCP (Windows only)](https://winscp.net/)
+
+---
+
+#### 2. Connect to Your VM Graphically
+1. Open **FileZilla** (or WinSCP).
+2. Look for the **Quickconnect** bar at the top (or open the **Site Manager**):
+   * **Host:** `sftp://20.89.20.174` *(Make sure to type `sftp://` before your IP!)*
+   * **Username:** `breachpoint`
+   * **Password:** *(Your VM administrator password)*
+   * **Port:** `22`
+3. Click **Quickconnect**. If a popup warns you about an "Unknown host key", check the box to trust it and click **OK**.
+
+You will see your local computer files on the **left panel** and your Azure Linux server files on the **right panel**!
+
+---
+
+#### 3. Set Directory Permissions (Important!)
+By default, Apache's web folder is located at `/var/www/html/`. Because this is a system folder owned by the `root` user, your standard `breachpoint` user won't have permission to upload files to it yet. 
+
+To fix this, go back to your **SSH Terminal** and run this command to grant your user ownership of the web directory:
+
+```bash
+sudo chown -R breachpoint:breachpoint /var/www/html
+```
