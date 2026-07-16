@@ -21,3 +21,12 @@ BreachPoint is a cloud-native security scanner hosted on Azure. It allows admini
 
 ### 📖 Step-by-Step Cloud Deployment & Implementation Guide
 This guide is designed to take you from a local application to a fully live, secure cloud-hosted web server on Microsoft Azure. Whether you are deploying an API, a portfolio site, or a custom cybersecurity tool like BreachPoint, these foundational steps apply to almost any web technology stack.
+
+### 📋 Prerequisites
+
+Before you begin, ensure you have the following ready:
+
+1. **A Cloud Account:** An active Microsoft Azure account (such as a Free Tier or Student Account).
+2. **Local Terminal:** A terminal or command-line interface (Terminal on macOS/Linux, or PowerShell/Git Bash on Windows).
+3. **Application Code:** A web application code structure ready in a local folder or pushed to a GitHub repository.
+4. **Basic CLI Comfort:** Familiarity with running basic commands (navigating directories, connecting to remote systems).
