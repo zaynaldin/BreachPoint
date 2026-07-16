@@ -83,4 +83,4 @@ Open your local terminal (Terminal on macOS/Linux, or PowerShell/Git Bash on Win
 
 ```bash
 ssh yourname@publicip
-e.g: ssh breachpoint@20.89.20.174
+(e.g., 'ssh breachpoint@20.89.20.174')
