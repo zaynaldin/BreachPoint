@@ -49,6 +49,7 @@ The first step is setting up your virtual hardware in the cloud.
   
   3. **Verify Your VM Properties (Visual Check):**
    Once your VM deployment is complete, navigate to your resource. Your Azure Virtual Machine dashboard configuration should be something like this layout:
+   (remember, the specifications, vm, and storage will differ from one person to another depedning on their preferences)
 
 ```text
    +---------------------------------------+---------------------------------------+
