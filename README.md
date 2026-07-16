@@ -133,4 +133,5 @@ Once the service is active, you can verify your web server is successfully recei
 2. Enter your VM's public IP address in the address bar:
    
    ```text
-   [http://20.89.20.174](http://20.89.20.174)
+   http://your-public-IP
+   ```
