@@ -73,6 +73,25 @@ The first step is setting up your virtual hardware in the cloud.
    it should look like that:
    ![Verify Your Azure VM Properties](https://raw.githubusercontent.com/zaynaldin/BreachPoint/348553b1cade45d185128de56d759e06cf42289a/images/Screenshot%202026-07-16%20151031.png)
 
+#### 4. Configure Networking & Inbound Port Rules (Crucial Step!)
+Before you can connect to your newly created Virtual Machine or host your website, you must configure the firewall (Network Security Group) in Azure to allow traffic through specific ports. 
+
+Without this step, you will not be able to SSH into your server, and your web pages will be blocked from the public internet.
+
+##### How to Configure Ports via the Azure Portal:
+1. Navigate to your newly created Virtual Machine dashboard in the **Azure Portal**.
+2. On the left-hand sidebar, scroll down to the **Settings** category and click on **Networking** (or **Network settings**).
+3. Click on the **Add inbound port rule** button to open the configuration panel.
+4. Add the following three rules to allow essential traffic:
+
+| Service | Port Range | Protocol | Action | Description |
+| :--- | :--- | :--- | :--- | :--- |
+| **SSH** | `22` | TCP | Allow | Allows secure terminal connection to manage your Linux VM. |
+| **HTTP** | `80` | TCP | Allow | Allows standard unencrypted web traffic (needed for Apache and Certbot validation). |
+| **HTTPS** | `443` | TCP | Allow | Allows secure, encrypted web traffic once your SSL certificate is installed. |
+
+> ⚠️ **Security Tip:** Ensure that the **Action** for all three rules is set to **Allow** and that you click **Add/Save** to apply the changes. It may take a minute for Azure to update the Network Security Group.
+
 
 ### 🔑 Phase 2: Connecting and Hardening Your VM
 
