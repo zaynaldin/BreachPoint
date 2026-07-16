@@ -30,3 +30,13 @@ Before you begin, ensure you have the following ready:
 2. **Local Terminal:** A terminal or command-line interface (Terminal on macOS/Linux, or PowerShell/Git Bash on Windows).
 3. **Application Code:** A web application code structure ready in a local folder or pushed to a GitHub repository.
 4. **Basic CLI Comfort:** Familiarity with running basic commands (navigating directories, connecting to remote systems).
+
+### 🛠️ Phase 1: Provisioning the Cloud Server
+
+The first step is setting up your virtual hardware in the cloud.
+
+1. **Create an Azure Virtual Machine:**
+   * Log into the Azure Portal and search for **Virtual Machines**.
+   * Click **Create** $\rightarrow$ **Azure Virtual Machine**.
+   * Select a lightweight, cost-effective Linux image (e.g., **Ubuntu Server 22.04 LTS**).
+   * Set your administrator username (e.g., `breachpoint`).
