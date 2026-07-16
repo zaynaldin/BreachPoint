@@ -19,6 +19,8 @@ BreachPoint is a cloud-native security scanner hosted on Azure. It allows admini
 * **CVE Mapping:** Automatically cross-references open ports with known vulnerabilities.
 * **Web Dashboard:** A clean web interface to easily run scans and view logs.
 
+---
+
 ### 📖 Step-by-Step Cloud Deployment & Implementation Guide
 This guide is designed to take you from a local application to a fully live, secure cloud-hosted web server on Microsoft Azure. Whether you are deploying an API, a portfolio site, or a custom cybersecurity tool like BreachPoint, these foundational steps apply to almost any web technology stack.
 
@@ -31,27 +33,28 @@ Before you begin, ensure you have the following ready:
 3. **Application Code:** A web application code structure ready in a local folder or pushed to a GitHub repository.
 4. **Basic CLI Comfort:** Familiarity with running basic commands (navigating directories, connecting to remote systems).
 
+---
+
 ### 🛠️ Phase 1: Provisioning the Cloud Server
 
 The first step is setting up your virtual hardware in the cloud.
 
 1. **Create an Azure Virtual Machine:**
    * Log into the Azure Portal and search for **Virtual Machines**.
-   * Click **Create** $\rightarrow$ **Azure Virtual Machine**.
+   * Click **Create** → **Azure Virtual Machine**.
    * Select a lightweight, cost-effective Linux image (e.g., **Ubuntu Server 22.04 LTS**).
-   * Set your administrator username (e.g., `breachpoint`).
 
 2. **Configure Administrator Account:**
    * Under **Administrator account**, select **Password** as your authentication type.
    * Set your administrator username (e.g., `breachpoint`).
    * Enter a strong, secure password of your choice. Keep this safe, as you will need it to log into the system!
-   * (you can use the normal SSH key way, however I used this method because it's way more beginner friendly)
-  
-  3. **Verify Your VM Properties (Visual Check):**
-   Once your VM deployment is complete, navigate to your resource. Your Azure Virtual Machine dashboard configuration should be something like this layout:
-   (remember, the specifications, vm, and storage will differ from one person to another depedning on their preferences)
+   
+   > 💡 **Tip:** You can choose to set up SSH keys here instead, but password authentication is often much more straightforward and beginner-friendly when you are deploying your very first cloud server.
 
-```text
+3. **Verify Your VM Properties (Visual Check):**
+   Once your VM deployment is complete, navigate to your resource. Your Azure Virtual Machine dashboard configuration should resemble the following layout:
+
+   ```text
    +---------------------------------------+---------------------------------------+
    | 💻 VIRTUAL MACHINE PROPERTIES         | 🌐 NETWORKING DETAILS                 |
    +---------------------------------------+---------------------------------------+
@@ -66,8 +69,3 @@ The first step is setting up your virtual hardware in the cloud.
    | vCPUs:              2                 | Source Publisher:     canonical       |
    | RAM Memory:         1 GiB             | Source Plan:          server          |
    +---------------------------------------+---------------------------------------+
-```
-
-![Verify Your Azure VM Properties](https://raw.githubusercontent.com/zaynaldin/BreachPoint/348553b1cade45d185128de56d759e06cf42289a/images/Screenshot%202026-07-16%20151031.png)
-
-
