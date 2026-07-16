@@ -66,6 +66,8 @@ The first step is setting up your virtual hardware in the cloud.
    | vCPUs:              2                 | Source Publisher:     canonical       |
    | RAM Memory:         1 GiB             | Source Plan:          server          |
    +---------------------------------------+---------------------------------------+
+```
 
+![Verify Your Azure VM Properties](https://raw.githubusercontent.com/zaynaldin/BreachPoint/348553b1cade45d185128de56d759e06cf42289a/images/Screenshot%202026-07-16%20151031.png)
 
 
