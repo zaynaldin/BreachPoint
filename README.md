@@ -14,7 +14,7 @@ BreachPoint is a cloud-native security scanner hosted on Azure. It allows admini
 
 ---
 
-### 🛠️ Core Features
+### 🛠️ Core Features of BreachPoint
 * **Port Discovery:** Scans common network ports on a target domain to identify exposed services.
 * **CVE Mapping:** Automatically cross-references open ports with known vulnerabilities.
 * **Web Dashboard:** A clean web interface to easily run scans and view logs.
