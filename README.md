@@ -141,8 +141,6 @@ If everything is configured correctly, you will be greeted by the default **Apac
 
 ---
 
----
-
 ### 📂 Phase 4: Uploading Your Web Files (The Easy GUI Way)
 
 While you can write code directly inside the Linux terminal using editors like `nano`, it is much easier to design your HTML, CSS, and JavaScript files locally on your own computer and upload them using a graphical **SFTP (Secure File Transfer Protocol)** client like **FileZilla**.
