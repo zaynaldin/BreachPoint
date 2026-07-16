@@ -11,3 +11,11 @@ BreachPoint is a cloud-native security scanner hosted on Azure. It allows admini
 * **Domain:** [https://breachpoint.ddns.net/](https://breachpoint.ddns.net/)
 * **Public IP:** [20.89.20.174](http://20.89.20.174)
 * **SSH Username:** `breachpoint`
+
+---
+
+### 🛠️ Core Features
+* **Port Discovery:** Scans common network ports on a target domain to identify exposed services.
+* **CVE Mapping:** Automatically cross-references open ports with known vulnerabilities.
+* **Web Dashboard:** A clean web interface to easily run scans and view logs.
+
