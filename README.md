@@ -72,3 +72,15 @@ The first step is setting up your virtual hardware in the cloud.
    ```
    it should look like that:
    ![Verify Your Azure VM Properties](https://raw.githubusercontent.com/zaynaldin/BreachPoint/348553b1cade45d185128de56d759e06cf42289a/images/Screenshot%202026-07-16%20151031.png)
+
+
+### 🔑 Phase 2: Connecting and Hardening Your VM
+
+With your cloud server officially online, the next step is securely logging in via the Command Line Interface (CLI) and setting up essential defensive baselines.
+
+#### 1. Access Your Server via SSH
+Open your local terminal (Terminal on macOS/Linux, or PowerShell/Git Bash on Windows) and execute the SSH command below:
+
+```bash
+ssh yourname@publicip
+e.g: ssh breachpoint@20.89.20.174
