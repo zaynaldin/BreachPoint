@@ -84,3 +84,12 @@ Open your local terminal (Terminal on macOS/Linux, or PowerShell/Git Bash on Win
 ```bash
 ssh yourname@publicip
 (e.g., 'ssh breachpoint@20.89.20.174')
+```
+* **The First-Time Connection Warning:** You will see a prompt saying:
+  > `The authenticity of host... can't be established. Are you sure you want to continue connecting (yes/no/[fingerprint])?`
+  
+  Type **`yes`** and press **Enter**.
+
+* **Entering Your Password:** The terminal will ask for your administrator password. 
+  
+  > ⚠️ **Linux Security Note:** When you type your password in the terminal, **no characters, dots, or asterisks will appear on the screen.** This is a standard security feature to prevent "shoulder-surfing" (people looking over your shoulder to steal your password). Just type your password blindly and hit **Enter**.
