@@ -93,3 +93,10 @@ ssh yourname@publicip
 * **Entering Your Password:** The terminal will ask for your administrator password. 
   
   > ⚠️ **Linux Security Note:** When you type your password in the terminal, **no characters, dots, or asterisks will appear on the screen.** This is a standard security feature to prevent "shoulder-surfing" (people looking over your shoulder to steal your password). Just type your password blindly and hit **Enter**.
+
+#### 2. Refresh & Update the System
+Before hosting any applications online, update your package manager and patch any outdated system libraries to ensure everything is secure:
+
+```bash
+sudo apt update && sudo apt upgrade -y
+```
