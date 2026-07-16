@@ -66,3 +66,6 @@ The first step is setting up your virtual hardware in the cloud.
    | vCPUs:              2                 | Source Publisher:     canonical       |
    | RAM Memory:         1 GiB             | Source Plan:          server          |
    +---------------------------------------+---------------------------------------+
+
+<img width="1168" height="652" alt="image" src="https://github.com/user-attachments/assets/d025501b-ff8a-45ba-afeb-1a4f5ce748c5" />
+
