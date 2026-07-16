@@ -19,3 +19,5 @@ BreachPoint is a cloud-native security scanner hosted on Azure. It allows admini
 * **CVE Mapping:** Automatically cross-references open ports with known vulnerabilities.
 * **Web Dashboard:** A clean web interface to easily run scans and view logs.
 
+### 📖 Step-by-Step Cloud Deployment & Implementation Guide
+This guide is designed to take you from a local application to a fully live, secure cloud-hosted web server on Microsoft Azure. Whether you are deploying an API, a portfolio site, or a custom cybersecurity tool like BreachPoint, these foundational steps apply to almost any web technology stack.
