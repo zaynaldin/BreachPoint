@@ -141,9 +141,11 @@ If everything is configured correctly, you will be greeted by the default **Apac
 
 ---
 
+---
+
 ### 📂 Phase 4: Uploading Your Web Files (The Easy GUI Way)
 
-While you can write code directly inside the Linux terminal using `nano`, it is much easier to design your HTML, CSS, and JavaScript files locally on your own computer and upload them using a graphical **SFTP (Secure File Transfer Protocol)** client like **FileZilla**.
+While you can write code directly inside the Linux terminal using editors like `nano`, it is much easier to design your HTML, CSS, and JavaScript files locally on your own computer and upload them using a graphical **SFTP (Secure File Transfer Protocol)** client like **FileZilla**.
 
 #### 1. Download an SFTP Client
 If you do not have one installed, download a free file transfer tool:
@@ -154,8 +156,8 @@ If you do not have one installed, download a free file transfer tool:
 #### 2. Connect to Your VM Graphically
 1. Open **FileZilla** (or WinSCP).
 2. Look for the **Quickconnect** bar at the top (or open the **Site Manager**):
-   * **Host:** `sftp://20.89.20.174` *(Make sure to type `sftp://` before your IP!)*
-   * **Username:** `breachpoint`
+   * **Host:** `sftp://your-public-IP` *(Make sure to type `sftp://` before your IP!)*
+   * **Username:** `your-username`
    * **Password:** *(Your VM administrator password)*
    * **Port:** `22`
 3. Click **Quickconnect**. If a popup warns you about an "Unknown host key", check the box to trust it and click **OK**.
@@ -165,10 +167,9 @@ You will see your local computer files on the **left panel** and your Azure Linu
 ---
 
 #### 3. Set Directory Permissions (Important!)
-By default, Apache's web folder is located at `/var/www/html/`. Because this is a system folder owned by the `root` user, your standard `breachpoint` user won't have permission to upload files to it yet. 
+By default, Apache's web folder is located at `/var/www/html/`. Because this is a system folder owned by the `root` user, your standard Linux user won't have permission to upload files to it yet. 
 
-To fix this, go back to your **SSH Terminal** and run this command to grant your user ownership of the web directory:
+To fix this, go back to your **SSH Terminal** and run this command to grant your specific user ownership of the web directory (replace `your-username` with your actual VM login name):
 
 ```bash
-sudo chown -R breachpoint:breachpoint /var/www/html
-```
+sudo chown -R your-username:your-username /var/www/html
