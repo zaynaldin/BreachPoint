@@ -238,3 +238,54 @@ Once configured, test that your domain successfully resolves to your Azure VM:
    # or
    ping yourdomain.com
    ```
+
+---
+
+### 🔒 Phase 6: Securing Your Web Server with HTTPS (SSL/TLS)
+
+Currently, your website is running over HTTP, meaning all data sent between the browser and your server is unencrypted. To secure your site and get the padlock icon (HTTPS) in the address bar, we will install a free SSL/TLS certificate from **Let's Encrypt** using the **Certbot** utility.
+
+#### 1. Update the Firewall for HTTPS Traffic
+Before requesting a certificate, make sure your Azure Virtual Machine is configured to allow HTTPS traffic on **Port 443**. 
+* Go to your **Azure Portal** -> **Virtual Machines** -> **Networking**.
+* Ensure there is an inbound security rule allowing **HTTPS (Port 443)** alongside your existing HTTP (Port 80) and SSH (Port 22) rules.
+
+---
+
+#### 2. Install Certbot
+
+SSH into your VM and run the following command to install Certbot and its Apache plugin:
+
+```bash
+sudo apt install certbot python3-certbot-apache -y
+```
+
+This step just installs the packages — it runs non-interactively and won't prompt you for anything.
+
+#### 3. Generate and Install Your SSL Certificate
+
+Run Certbot's automated script for Apache. Replace `your-domain` with your actual domain name:
+
+```bash
+sudo certbot --apache -d your-domain
+```
+
+> ✍️ **This is where Certbot will prompt you for the following:**
+>
+> 1. **Enter an email address** — used for urgent renewal and security notices.
+> 2. **Agree to the Terms of Service** — type `A` and press **Enter**.
+> 3. **Share your email (optional)** — choose `Y` (yes) or `N` (no).
+> 4. **Configure redirects** — Certbot will ask if you want to automatically redirect all HTTP traffic to HTTPS. **It's highly recommended to select the redirect option** (usually option `2`) so all traffic is forced onto the secure connection.
+
+Once finished, Certbot will update your Apache configuration automatically and print a success message.
+
+#### 4. Test Auto-Renewal (Crucial)
+Let's Encrypt certificates are valid for 90 days. Certbot automatically sets up a background system timer to renew them before they expire. You can run a "dry run" test to verify that the auto-renewal mechanism is working perfectly:
+
+```bash
+sudo certbot renew --dry-run
+```
+#### 5. Verify Your Secure Connection
+1. Open your web browser.
+2. Navigate to your website using `https://` (e.g., `https://your-domain`).
+3. Look at your address bar—you will now see the padlock icon 🔒, verifying that all traffic to and from your web application is fully encrypted!
