@@ -180,3 +180,61 @@ sudo chown -R your-username:your-username /var/www/html
 4. Simply **drag-and-drop** your custom `index.html`, `style.css`, and other web assets from the left panel straight into the `/var/www/html/` folder on the right panel!
 
 Once the transfer is complete, refresh your public IP address in your web browser to see your custom website live on the internet!
+
+---
+
+### 🌐 Phase 5: Configuring Your Domain Name (DNS)
+
+Remembering a raw IP address like `20.89.20.174` is difficult for users. Setting up a Domain Name System (DNS) maps your public IP address to a memorable name (like `breachpoint.ddns.net`). 
+
+Depending on your budget and project requirements, you can configure this using a **free dynamic DNS provider** or a **paid custom domain registrar**.
+
+---
+
+#### Option A: The Free Route (Dynamic DNS via No-IP)
+If you want a free domain name for testing or an academic project, No-IP is an excellent, beginner-friendly choice.
+
+1. **Create a Free Account:**
+   * Go to [No-IP.com](https://www.no-ip.com/) and register for a free account.
+2. **Create Your Hostname:**
+   * In your dashboard, click **Quick Add** or **Create Hostname**.
+   * Choose a unique hostname (e.g., `yourprojectname`).
+   * Choose a free domain extension from the dropdown (such as `.ddns.net`).
+3. **Map Your Azure Public IP:**
+   * Set the **Record Type** to **A (Host)**.
+   * Paste your Azure VM's Public IP address (e.g., `your-public-IP`) into the **IP Address** field.
+   * Click **Create Hostname** / **Save**.
+
+---
+
+#### Option B: The Paid/Professional Route (Custom Domain via GoDaddy)
+If you are deploying a production-ready application and want your own custom extension (like `.com`, `.net`, or `.org`), you can purchase a domain through a registrar like GoDaddy.
+
+1. **Purchase Your Domain:**
+   * Search for and buy your preferred domain on [GoDaddy.com](https://www.godaddy.com/).
+2. **Access DNS Management:**
+   * Log into your GoDaddy dashboard, navigate to **My Products**, find your domain, and click on **DNS** or **Manage DNS**.
+3. **Add an 'A' Record:**
+   * Look at your existing DNS records. You will want to edit or add a record with the following configurations:
+     * **Type:** `A`
+     * **Name:** `@` *(This represents your root domain, e.g., `yourdomain.com`)*
+     * **Value / Points to:** `your-public-IP` *(Your Azure VM's Public IP address)*
+     * **TTL:** `1 Hour` (or `Default`)
+   * *(Optional)* To make sure `www.yourdomain.com` works as well, add a **CNAME** record:
+     * **Type:** `CNAME`
+     * **Name:** `www`
+     * **Value:** `@`
+4. **Save Changes:**
+   * Save your configuration. Note that GoDaddy DNS updates can take anywhere from a few minutes to a few hours to propagate globally.
+
+---
+
+#### 3. Verify Your Domain Configuration
+Once configured, test that your domain successfully resolves to your Azure VM:
+
+1. Open your terminal and run a ping command:
+   ```bash
+   ping your-domain.ddns.net
+   # or
+   ping yourdomain.com
+   ```
