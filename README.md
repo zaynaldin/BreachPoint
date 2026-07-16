@@ -126,3 +126,11 @@ sudo systemctl enable apache2
 # Check the status to verify it is active and running
 sudo systemctl status apache2
 ```
+#### 3. Confirm Your Web Server is Online
+Once the service is active, you can verify your web server is successfully receiving traffic:
+
+1. Open a web browser on your computer.
+2. Enter your VM's public IP address in the address bar:
+   
+   ```text
+   [http://20.89.20.174](http://20.89.20.174)
