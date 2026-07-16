@@ -112,3 +112,17 @@ Run the following command to install the Apache web server package on your virtu
 
 ```bash
 sudo apt install apache2 -y
+```
+#### 2. Manage the Apache Service
+Use the system service manager (`systemctl`) to ensure Apache starts up immediately and launches automatically whenever your server reboots:
+
+```bash
+# Start the web server
+sudo systemctl start apache2
+
+# Enable the service to launch on boot
+sudo systemctl enable apache2
+
+# Check the status to verify it is active and running
+sudo systemctl status apache2
+```
