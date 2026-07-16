@@ -171,3 +171,12 @@ To fix this, go back to your **SSH Terminal** and run this command to grant your
 
 ```bash
 sudo chown -R your-username:your-username /var/www/html
+```
+#### 4. Upload Your HTML & CSS Files
+1. In the **right panel** (remote server) of FileZilla, navigate to the folder:
+   `/var/www/html/`
+2. You will see a default file named `index.html` (this is the Ubuntu welcome page we saw earlier). You can safely delete it or rename it.
+3. In the **left panel** (your computer), locate your local project folder.
+4. Simply **drag-and-drop** your custom `index.html`, `style.css`, and other web assets from the left panel straight into the `/var/www/html/` folder on the right panel!
+
+Once the transfer is complete, refresh your public IP address in your web browser to see your custom website live on the internet!
