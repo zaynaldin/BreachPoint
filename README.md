@@ -100,3 +100,15 @@ Before hosting any applications online, update your package manager and patch an
 ```bash
 sudo apt update && sudo apt upgrade -y
 ```
+
+---
+
+### 🚀 Phase 3: Setting Up the Web Application Server
+
+With a secure operating system environment running, we will now deploy the Apache HTTP Web Server to host and serve our application files to the public.
+
+#### 1. Install Apache2
+Run the following command to install the Apache web server package on your virtual machine:
+
+```bash
+sudo apt install apache2 -y
