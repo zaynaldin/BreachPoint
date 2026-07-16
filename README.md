@@ -46,3 +46,22 @@ The first step is setting up your virtual hardware in the cloud.
    * Set your administrator username (e.g., `breachpoint`).
    * Enter a strong, secure password of your choice. Keep this safe, as you will need it to log into the system!
    * (you can use the normal SSH key way, however I used this method because it's way more beginner friendly)
+  
+  3. **Verify Your VM Properties (Visual Check):**
+   Once your VM deployment is complete, navigate to your resource. Your Azure Virtual Machine dashboard configuration should be something like this layout:
+
+```text
+   +---------------------------------------+---------------------------------------+
+   | 💻 VIRTUAL MACHINE PROPERTIES         | 🌐 NETWORKING DETAILS                 |
+   +---------------------------------------+---------------------------------------+
+   | Computer name:      ICT171            | Public IP address:    20.89.20.174    |
+   | Operating system:   Linux (ubuntu 22.04) | Private IP address:   10.1.1.4        |
+   | VM architecture:    x64               | Virtual network:      ICT171-vnet     |
+   | Agent status:       Ready             |                                       |
+   +---------------------------------------+---------------------------------------+
+   | 🎛️ HARDWARE SPECIFICATIONS             | 💿 STORAGE & SOURCE DETAILS           |
+   +---------------------------------------+---------------------------------------+
+   | VM Size:            Standard B2ats v2 | OS Disk Name:         ICT171_OsDisk   |
+   | vCPUs:              2                 | Source Publisher:     canonical       |
+   | RAM Memory:         1 GiB             | Source Plan:          server          |
+   +---------------------------------------+---------------------------------------+
