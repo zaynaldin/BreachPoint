@@ -334,6 +334,6 @@ Now that your server is fully online and secured with HTTPS, you can begin explo
 
 ## 👥 Authors & License
 
-* **Zaynaldin Attia** (Student ID: `35997081`) - *Cybersecurity Student*
+* **Zaynaldin Ahmed Abdelfattah Attia** (Student ID: `35997081`) - *Cybersecurity Student*
 
 This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) file for details.
