@@ -322,22 +322,31 @@ Congratulations! You have successfully built, deployed, and secured a cloud-host
 
 This robust environment is now ready to host your web application securely under a custom domain name! 
 
-***
-How BreachPoint Works
+# 🛡️ BreachPoint
 
-BreachPoint takes a domain or IP and runs it through a three-stage pipeline: ingestion, port reconnaissance, and CVE cross-referencing.
+BreachPoint is an automated security reconnaissance tool designed to identify potential vulnerabilities in domains and IP addresses. By streamlining the process from discovery to CVE identification, BreachPoint provides actionable insights into your perimeter security.
 
-Ingestion validates the target you enter before the scan starts — confirms it's a reachable domain/IP so the pipeline isn't scanning garbage input.
+## 🚀 How It Works
 
-Port reconnaissance scans the target across common ports (80, 443, 22, 21, etc.) to find what's open. Open ports usually return a service banner (e.g. "Apache/2.4.41", "OpenSSH 8.2") identifying what's running.
+BreachPoint processes targets through a robust three-stage pipeline:
 
-CVE cross-referencing takes those banners and checks them against the NVD. If a service version matches a known CVE, it's flagged with its severity rating — turning "port 22 is open" into "port 22 is running an SSH version with a known RCE."
+1. **Ingestion**: Validates the target domain or IP to ensure it is reachable, preventing wasted resources on invalid inputs.
+2. **Port Reconnaissance**: Scans for common ports (e.g., 80, 443, 22, 21) to identify active services and capture service banners (e.g., `Apache/2.4.41`, `OpenSSH 8.2`).
+3. **CVE Cross-Referencing**: Matches identified service versions against the **National Vulnerability Database (NVD)**. It flags known vulnerabilities, turning raw port data into prioritized security intelligence.
 
-The dashboard shows the output of all three stages: a perimeter score out of 100, a table of open ports with risk levels, and a live feed of matched CVEs.
+## 📊 Dashboard Overview
 
-Hosted on an Azure VM behind HTTPS/Let's Encrypt, so it's reachable securely without running anything locally.
+The BreachPoint dashboard provides a comprehensive view of your target's security posture:
+
+* **Perimeter Score**: A quick-reference score out of 100.
+* **Port Inventory**: A detailed table of open ports categorized by risk level.
+* **Live CVE Feed**: Real-time alerts for matched vulnerabilities.
+
+## ☁️ Deployment
+
+BreachPoint is hosted on an **Azure VM** and secured via **HTTPS (Let's Encrypt)**, allowing for secure, remote scanning without the need for local installation.
+
 ---
-
 ## 👥 Authors & License
 
 * **Zaynaldin Ahmed Abdelfattah Attia** (Student ID: `35997081`) - *Cybersecurity Student*
