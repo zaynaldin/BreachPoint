@@ -335,9 +335,6 @@ BreachPoint processes targets through a robust three-stage pipeline:
 ![BreachPoint Dashboard](https://raw.githubusercontent.com/zaynaldin/BreachPoint/3a047a20f58759702918705316988a499d0bce02/images/Screenshot%202026-07-18%20131614.png)
 
 ## 📊 Dashboard Overview
-...
-
-## 📊 Dashboard Overview
 
 The BreachPoint dashboard provides a comprehensive view of your target's security posture:
 
