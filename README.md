@@ -351,7 +351,7 @@ BreachPoint is currently in a beta development phase. While the tool is stable a
 I have a clear long-term vision for this project and am actively developing new features to ensure it becomes a reliable resource for professional penetration testers. Because the backend architecture is quite complex, I am taking a phased approach to its growth. As I release updates, I will also be working to keep the codebase clean, modular, and easy for everyone to understand.
 
 Thank you for following the progress of BreachPoint. I am fully committed to keeping this project active and evolving it into a robust tool you can rely on.
-
+Please note: I uploaded the index.html file which is the frontend of this tool, the backend (which is python) is still confidential until I offically release the tool (becaue it's in beta)
 ---
 ## 👥 Authors & License
 
