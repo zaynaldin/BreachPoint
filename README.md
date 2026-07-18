@@ -351,9 +351,13 @@ The BreachPoint dashboard provides a comprehensive view of your target's securit
 
 ![Scan Results](https://github.com/zaynaldin/BreachPoint/blob/6719307f46700641ad42c15b886103153c6d752b/images/Screenshot%202026-07-18%20132051.png)
 
-## ☁️ Deployment
+## 🚧 Future of BreachPoint!
 
-BreachPoint is hosted on an **Azure VM** and secured via **HTTPS (Let's Encrypt)**, allowing for secure, remote scanning without the need for local installation.
+BreachPoint is currently in a beta development phase. While the tool is stable and performing well for its current feature set, it is not yet optimized for heavy or deep scanning operations.
+
+I have a clear long-term vision for this project and am actively developing new features to ensure it becomes a reliable resource for professional penetration testers. Because the backend architecture is quite complex, I am taking a phased approach to its growth. As I release updates, I will also be working to keep the codebase clean, modular, and easy for everyone to understand.
+
+Thank you for following the progress of BreachPoint. I am fully committed to keeping this project active and evolving it into a robust tool you can rely on.
 
 ---
 ## 👥 Authors & License
