@@ -323,13 +323,19 @@ Congratulations! You have successfully built, deployed, and secured a cloud-host
 This robust environment is now ready to host your web application securely under a custom domain name! 
 
 ***
+How BreachPoint Works
 
-### 🛡️ What's Next?
-Now that your server is fully online and secured with HTTPS, you can begin exploring advanced security configurations:
-1.  **Set up a Web Application Firewall (WAF)** to protect your web application from common exploits.
-2.  **Configure basic SSH hardening** (such as disabling password authentication and using SSH keys only) to protect your terminal access.
-3.  **Implement automated server backups** to ensure your custom web directory `/var/www/html/` is always safe.
+BreachPoint takes a domain or IP and runs it through a three-stage pipeline: ingestion, port reconnaissance, and CVE cross-referencing.
 
+Ingestion validates the target you enter before the scan starts — confirms it's a reachable domain/IP so the pipeline isn't scanning garbage input.
+
+Port reconnaissance scans the target across common ports (80, 443, 22, 21, etc.) to find what's open. Open ports usually return a service banner (e.g. "Apache/2.4.41", "OpenSSH 8.2") identifying what's running.
+
+CVE cross-referencing takes those banners and checks them against the NVD. If a service version matches a known CVE, it's flagged with its severity rating — turning "port 22 is open" into "port 22 is running an SSH version with a known RCE."
+
+The dashboard shows the output of all three stages: a perimeter score out of 100, a table of open ports with risk levels, and a live feed of matched CVEs.
+
+Hosted on an Azure VM behind HTTPS/Let's Encrypt, so it's reachable securely without running anything locally.
 ---
 
 ## 👥 Authors & License
