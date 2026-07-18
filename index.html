@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BreachPoint — Security Control Center</title>
+    
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%232dd4bf' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='3' y='11' width='18' height='11' rx='2' ry='2'%3E%3C/rect%3E%3Cpath d='M7 11V7a5 5 0 0 1 10 0v4'%3E%3C/path%3E%3C/svg%3E">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght=300;400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+        .mono-font {
+            font-family: 'JetBrains Mono', monospace;
+        }
+        /* Custom scrollbar for raw terminal output */
+        .terminal-scroll::-webkit-scrollbar {
+            width: 4px;
+        }
+        .terminal-scroll::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .terminal-scroll::-webkit-scrollbar-thumb {
+            background: #1e293b;
+            border-radius: 9999px;
+        }
+    </style>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col justify-between selection:bg-teal-500/20 selection:text-teal-400 overflow-x-hidden">
+
+    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-[450px] bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-teal-500/10 via-transparent to-transparent blur-3xl pointer-events-none" aria-hidden="true"></div>
+
+    <header class="w-full max-w-6xl mx-auto px-6 pt-6 pb-4 flex justify-between items-center border-b border-slate-900/60 z-10">
+        <div class="flex items-center gap-3 group cursor-pointer" onclick="resetApp()">
+            <div class="h-9 w-9 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center shadow-lg group-hover:border-teal-500/30 group-hover:shadow-teal-500/10 transition-all duration-300">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 text-teal-400 group-hover:text-teal-300 transition-colors duration-300">
+                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                    <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                </svg>
+            </div>
+            <div class="flex flex-col">
+                <span class="font-bold text-lg tracking-tight bg-gradient-to-r from-white to-slate-400 bg-clip-text text-transparent group-hover:from-teal-400 group-hover:to-teal-300 group-hover:drop-shadow-[0_0_12px_rgba(45,212,191,0.4)] transition-all duration-300">
+                    BreachPoint
+                </span>
+                <span class="text-[9px] uppercase tracking-widest text-slate-500 font-mono -mt-1">Active Core Engine</span>
+            </div>
+        </div>
+        
+        <div class="flex items-center gap-2 text-xs font-mono border border-emerald-500/20 px-3 py-1.5 rounded-full bg-emerald-500/5 backdrop-blur-sm select-none">
+            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping"></span>
+            <span class="text-emerald-400 font-medium">SYS_ONLINE</span>
+        </div>
+    </header>
+
+    <main class="w-full max-w-6xl mx-auto px-6 py-8 flex-grow flex flex-col gap-6 z-10">
+        
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+            
+            <section class="lg:col-span-5 bg-slate-900/40 border border-slate-900 p-6 rounded-2xl flex flex-col justify-between backdrop-blur-sm shadow-xl">
+                <div>
+                    <div class="mb-4 inline-flex items-center gap-1.5 text-xs font-semibold text-teal-400 tracking-wide uppercase">
+                        <span class="w-1.5 h-1.5 rounded-full bg-teal-400"></span>
+                        Automated Target Audit
+                    </div>
+                    <h2 class="text-2xl font-bold tracking-tight text-white mb-2">Perimeter Scan</h2>
+                    <p class="text-slate-400 text-xs leading-relaxed font-light mb-6">
+                        Provide a target hostname or IP address configuration to initialize our three-step pipeline: target ingestion verification, deep-port reconnaissance, and CVE vulnerability alignment.
+                    </p>
+
+                    <div class="space-y-4">
+                        <div>
+                            <label for="target-input" class="block text-[11px] font-mono uppercase tracking-wider text-slate-500 mb-2">Audit Target Domain or IP Address</label>
+                            <div class="relative">
+                                <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center text-slate-500 font-mono text-xs select-none">
+                                    https://
+                                </span>
+                                <input type="text" id="target-input" placeholder="example.com" class="w-full bg-slate-950/80 border border-slate-800 rounded-xl pl-20 pr-4 py-3 text-sm text-slate-200 placeholder-slate-600 focus:outline-none focus:border-teal-500/50 focus:ring-1 focus:ring-teal-500/50 font-mono transition-all duration-300">
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-2 gap-3">
+                            <div>
+                                <label class="block text-[10px] font-mono uppercase tracking-wider text-slate-500 mb-1.5">Intensity Profile</label>
+                                <select class="w-full bg-slate-950 border border-slate-800 rounded-lg p-2 text-xs font-mono text-slate-300 focus:outline-none focus:border-teal-500/40">
+                                    <option>Standard Perimeter Scan</option>
+                                    <option>Intense Service Discovery</option>
+                                    <option>Vulnerability Probe Only</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-[10px] font-mono uppercase tracking-wider text-slate-500 mb-1.5">Database Sync</label>
+                                <select class="w-full bg-slate-950 border border-slate-800 rounded-lg p-2 text-xs font-mono text-slate-300 focus:outline-none focus:border-teal-500/40">
+                                    <option>Direct NVD API Sync</option>
+                                    <option>Cached Database Lookup</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-8">
+                    <button id="scan-btn" onclick="executeBreachPointAudit()" class="w-full bg-teal-500 text-slate-950 font-semibold text-xs tracking-wider uppercase py-3.5 px-4 rounded-xl hover:bg-teal-400 active:scale-[0.98] transition-all duration-200 flex items-center justify-center gap-2 shadow-lg shadow-teal-500/10">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 animate-pulse"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+                        Initialize BreachPoint Engine
+                    </button>
+                </div>
+            </section>
+
+            <section class="lg:col-span-7 bg-slate-950 border border-slate-900 rounded-2xl flex flex-col overflow-hidden shadow-2xl relative">
+                <div class="bg-slate-900/60 border-b border-slate-900/80 px-4 py-3 flex items-center justify-between">
+                    <div class="flex items-center gap-2">
+                        <span class="w-2.5 h-2.5 rounded-full bg-red-500/40"></span>
+                        <span class="w-2.5 h-2.5 rounded-full bg-amber-500/40"></span>
+                        <span class="w-2.5 h-2.5 rounded-full bg-teal-500/40"></span>
+                        <span class="text-[10px] font-mono text-slate-500 uppercase tracking-widest ml-1">Live Processing Output Console</span>
+                    </div>
+                    <div class="text-[10px] font-mono text-slate-600">
+                        tty01 @ azure-vm
+                    </div>
+                </div>
+
+                <div id="console-stream" class="p-5 flex-grow font-mono text-xs text-slate-400 overflow-y-auto h-[260px] terminal-scroll space-y-2 select-text bg-slate-950/90">
+                    <div class="text-slate-600 italic">// System standby. Input target domain configuration and click "Initialize".</div>
+                </div>
+
+                <div class="bg-slate-900/20 border-t border-slate-900/80 px-5 py-3.5 grid grid-cols-3 gap-2 text-center text-[10px] font-mono">
+                    <div id="step-glow-1" class="border border-slate-800 text-slate-600 rounded-lg py-1.5 transition-all duration-300">
+                        [01] INGESTION
+                    </div>
+                    <div id="step-glow-2" class="border border-slate-800 text-slate-600 rounded-lg py-1.5 transition-all duration-300">
+                        [02] RECONNAISSANCE
+                    </div>
+                    <div id="step-glow-3" class="border border-slate-800 text-slate-600 rounded-lg py-1.5 transition-all duration-300">
+                        [03] CVE-RESOLVER
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <section class="mt-4">
+            
+            <div class="flex border-b border-slate-900/80 mb-6 gap-2">
+                <button onclick="switchTab('tab-dashboard')" id="btn-tab-dashboard" class="border-b-2 border-teal-500 text-teal-400 px-4 py-2.5 text-xs font-mono uppercase tracking-wider font-semibold transition-all duration-200">
+                    Scanner Dashboard
+                </button>
+                <button onclick="switchTab('tab-architecture')" id="btn-tab-architecture" class="border-b-2 border-transparent text-slate-500 hover:text-slate-300 px-4 py-2.5 text-xs font-mono uppercase tracking-wider font-semibold transition-all duration-200">
+                    Core Technical Architecture
+                </button>
+                <button onclick="switchTab('tab-license')" id="btn-tab-license" class="border-b-2 border-transparent text-slate-500 hover:text-slate-300 px-4 py-2.5 text-xs font-mono uppercase tracking-wider font-semibold transition-all duration-200">
+                    System License Policy
+                </button>
+            </div>
+
+            <div>
+                
+                <div id="tab-dashboard" class="tab-pane space-y-6">
+                    <div id="no-results" class="bg-slate-900/10 border border-dashed border-slate-900 rounded-2xl py-14 text-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="w-10 h-10 text-slate-700 mx-auto mb-4">
+                            <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                            <line x1="8" y1="21" x2="16" y2="21"></line>
+                            <line x1="12" y1="17" x2="12" y2="21"></line>
+                        </svg>
+                        <p class="text-sm font-mono text-slate-500">No active scan telemetry detected. Run audit loop above to visualize real outcomes.</p>
+                    </div>
+
+                    <div id="scan-results" class="hidden grid grid-cols-1 md:grid-cols-12 gap-6">
+                        
+                        <div class="md:col-span-4 bg-slate-900/40 border border-slate-900 p-6 rounded-2xl flex flex-col justify-between items-center text-center">
+                            <div>
+                                <h3 class="text-xs font-mono uppercase text-slate-500 mb-6">Security Perimeter Rating</h3>
+                                <div class="relative flex items-center justify-center">
+                                    <svg class="w-32 h-32 transform -rotate-90">
+                                        <circle cx="64" cy="64" r="56" stroke="rgba(30, 41, 59, 0.5)" stroke-width="8" fill="transparent"></circle>
+                                        <circle id="score-ring" cx="64" cy="64" r="56" stroke="#f43f5e" stroke-width="8" fill="transparent" stroke-dasharray="351.8" stroke-dashoffset="105.5" class="transition-all duration-1000"></circle>
+                                    </svg>
+                                    <div class="absolute flex flex-col items-center">
+                                        <span id="score-val" class="text-4xl font-extrabold text-white">100</span>
+                                        <span id="risk-text" class="text-[9px] font-mono text-emerald-400 font-bold uppercase tracking-widest mt-0.5">SECURE</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="text-xs text-slate-500 leading-relaxed font-light mt-6">
+                                The score is determined dynamically based on open administrative protocol vectors paired with matching CVE severity metrics.
+                            </p>
+                        </div>
+
+                        <div class="md:col-span-8 bg-slate-900/40 border border-slate-900 rounded-2xl p-6 overflow-hidden">
+                            <h3 class="text-xs font-mono uppercase text-slate-400 mb-4 flex items-center gap-2">
+                                <span class="w-1.5 h-1.5 rounded-full bg-teal-400"></span>
+                                Discovered Port Interfaces &amp; Statuses
+                            </h3>
+                            <div class="overflow-x-auto">
+                                <table class="w-full text-left text-xs font-mono">
+                                    <thead>
+                                        <tr class="border-b border-slate-900 text-slate-500">
+                                            <th class="pb-3 font-medium">INTERFACE</th>
+                                            <th class="pb-3 font-medium">PROTOCOL</th>
+                                            <th class="pb-3 font-medium">RESOLVED BANNER / SERVICE</th>
+                                            <th class="pb-3 font-medium text-right">METRIC RISK</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="ports-table-body" class="divide-y divide-slate-900/50">
+                                        </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div class="md:col-span-12 bg-slate-900/40 border border-slate-900 p-6 rounded-2xl">
+                            <h3 class="text-xs font-mono uppercase text-slate-400 mb-4 flex items-center gap-2">
+                                <span class="w-1.5 h-1.5 rounded-full bg-teal-400"></span>
+                                Live Vulnerability Mapping (CVE Sync Logs)
+                            </h3>
+                            <div id="cve-cards-container" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div id="tab-architecture" class="tab-pane hidden">
+                    <div class="bg-slate-900/20 border border-slate-900 p-6 md:p-8 rounded-2xl">
+                        <h3 class="text-sm font-mono uppercase tracking-widest text-slate-400 mb-6 flex items-center gap-2">
+                            <span class="text-teal-500">//</span> Technical Core Documentation
+                        </h3>
+                        <article class="prose prose-invert max-w-none text-slate-400 text-sm md:text-base leading-relaxed space-y-4 font-light">
+                            <p>
+                                BreachPoint is an innovative, cloud-native security architecture engineered to automate external attack surface assessment and streamline early-stage vulnerability identification. In the highly complex modern global cybersecurity landscape, organizations constantly struggle to maintain comprehensive visibility over their expanding digital footprints, frequently leaving exposed network entry points vulnerable to malicious exploitation. BreachPoint addresses this critical defensive gap by providing an automated, structural framework that maps external perimeters efficiently and predictably, converting raw network responses into actionable security intelligence before perimeter assets can be discovered and targeted by sophisticated adversarial threats.
+                            </p>
+                            <p>
+                                The core engineering infrastructure operates through a strict three-step execution pipeline designed for structural speed and analytical precision. First, the platform performs <strong class="text-teal-400 font-medium">Target Ingestion</strong>, where it accepts a specified root domain, validates organizational scope, and establishes clear boundaries for the security assessment. Second, it initiates <strong class="text-teal-400 font-medium">Port Reconnaissance</strong>, actively and continuously scanning the target infrastructure to discover exposed network entry points, listening services, and active open ports across the external perimeter. Third, the framework handles <strong class="text-teal-400 font-medium">CVE Cross-Referencing</strong>, passing the discovered open ports and service banners through public Common Vulnerabilities and Exposures databases. This advanced automation process automatically resolves historical threat metadata and maps current vulnerability statuses across the target network environment.
+                            </p>
+                            <p>
+                                By wrapping these foundational phases into a single, automated workflow, BreachPoint eliminates administrative friction and standardizes perimeter analysis. Security teams receive a clear, centralized snapshot of their external risk posture, allowing them to prioritize remediation efforts based on real-world threat mappings. Designed to run efficiently on lightweight cloud infrastructure like Amazon EC2 or DigitalOcean, the platform offers a minimal deployment footprint suitable for continuous monitoring routines without imposing heavy resource overhead on hosting environments. Ultimately, it delivers essential intelligence that helps defensive teams mitigate severe security risks pro-actively, optimize resource allocation, strengthen global network access rules, and secure critical enterprise digital assets.
+                            </p>
+                        </article>
+                    </div>
+                </div>
+
+                <div id="tab-license" class="tab-pane hidden space-y-6">
+                    <div class="bg-slate-900/20 border border-slate-900 p-6 rounded-2xl">
+                        <h3 class="text-sm font-mono uppercase tracking-widest text-slate-400 mb-4 flex items-center gap-2">
+                            <span class="text-teal-500">//</span> Open Source MIT License Rationale
+                        </h3>
+                        <p class="text-slate-400 text-sm md:text-base leading-relaxed font-light">
+                            The MIT License was strategically chosen for BreachPoint to maximize adoption, academic collaboration, and open-source contribution. As a permissive software license, it imposes minimal restrictions, allowing other students, developers, and security researchers to freely run, copy, modify, merge, and distribute the framework without legal friction. This open approach aligns with the core philosophy of collaborative security, encouraging community-driven improvements to the scanning engine. While granting extensive freedom, the MIT License explicitly protects the author by including a crucial non-liability clause, ensuring the software is provided "as is" without any implied warranties or legal liabilities.
+                        </p>
+                    </div>
+
+                    <div class="bg-slate-950 border border-slate-900 rounded-2xl p-6 font-mono text-xs text-slate-500 relative overflow-hidden shadow-inner shadow-black/40">
+                        <div class="absolute top-0 right-0 bg-slate-900/60 border-b border-l border-slate-900 px-3 py-1 text-[10px] text-slate-400 uppercase tracking-wider rounded-bl-xl select-none">
+                            Legal Terms
+                        </div>
+                        <div class="whitespace-pre-wrap leading-relaxed">MIT License
+
+Copyright (c) 2026 Zaynaldin
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.</div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="fixed bottom-6 left-1/2 -translate-x-1/2 w-[calc(100%-2rem)] max-w-5xl bg-slate-950/75 backdrop-blur-md border border-slate-800/90 rounded-2xl px-6 py-4 md:py-3.5 shadow-2xl shadow-black/80 z-50 transition-all duration-300">
+        <div class="flex flex-col md:flex-row items-center justify-between gap-4 text-xs font-mono text-slate-400">
+            <div class="flex items-center gap-2 group/foot cursor-pointer" onclick="resetApp()">
+                <span class="text-slate-500">Tool Name:</span>
+                <span class="text-white font-semibold tracking-wide group-hover/foot:text-teal-400 transition-colors duration-200">BreachPoint</span>
+            </div>
+
+            <div class="flex flex-col sm:flex-row items-center gap-3 sm:gap-6 border-y border-slate-900 md:border-y-0 py-2 md:py-0 w-full md:w-auto justify-center">
+                <div class="flex items-center gap-2">
+                    <span class="text-slate-500">Student Name:</span>
+                    <span class="text-slate-200 font-medium">ATTIA, zaynaldin</span>
+                </div>
+                <div class="hidden sm:inline text-slate-800">|</div>
+                <div class="flex items-center gap-2">
+                    <span class="text-slate-500">Student ID:</span>
+                    <span class="text-slate-200 font-medium">35997081</span>
+                </div>
+            </div>
+
+            <div class="flex items-center gap-1.5 text-slate-500">
+                <span>Licensing:</span>
+                <a href="https://opensource.org/licenses/MIT" target="_blank" rel="noopener noreferrer" class="text-teal-400 border border-teal-500/20 bg-teal-500/5 px-2 py-0.5 rounded text-[10px] hover:bg-teal-500/15 hover:border-teal-500/40 hover:text-teal-300 transition-all duration-200 shadow-sm shadow-teal-950/20">
+                    Distributed under the MIT License
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <div class="h-28 w-full shrink-0" aria-hidden="true"></div>
+
+    <script>
+        // Helper tool to simulate scrolling high-tech delays
+        const delay = ms => new Promise(res => setTimeout(res, ms));
+
+        // Tab switching controller
+        function switchTab(tabId) {
+            const panes = document.querySelectorAll('.tab-pane');
+            panes.forEach(pane => pane.classList.add('hidden'));
+
+            const buttons = document.querySelectorAll('[id^="btn-tab-"]');
+            buttons.forEach(btn => {
+                btn.classList.remove('border-teal-500', 'text-teal-400');
+                btn.classList.add('border-transparent', 'text-slate-500');
+            });
+
+            document.getElementById(tabId).classList.remove('hidden');
+            const activeBtn = document.getElementById('btn-tab-' + tabId.replace('tab-', ''));
+            activeBtn.classList.remove('border-transparent', 'text-slate-500');
+            activeBtn.classList.add('border-teal-500', 'text-teal-400');
+        }
+
+        // Reset App state
+        function resetApp() {
+            document.getElementById('target-input').value = '';
+            document.getElementById('console-stream').innerHTML = `<div class="text-slate-600 italic">// System standby. Input target domain configuration and click "Initialize".</div>`;
+            document.getElementById('no-results').classList.remove('hidden');
+            document.getElementById('scan-results').classList.add('hidden');
+            updateGlowState(0);
+            switchTab('tab-dashboard');
+        }
+
+        // Visual progress stage updates
+        function updateGlowState(activeStep) {
+            const step1 = document.getElementById('step-glow-1');
+            const step2 = document.getElementById('step-glow-2');
+            const step3 = document.getElementById('step-glow-3');
+
+            [step1, step2, step3].forEach(step => {
+                step.className = "border border-slate-800 text-slate-600 rounded-lg py-1.5 transition-all duration-300";
+            });
+
+            if (activeStep >= 1) {
+                step1.className = "border border-teal-500/30 text-teal-400 bg-teal-500/5 rounded-lg py-1.5 shadow-[0_0_15px_rgba(45,212,191,0.05)] font-bold transition-all duration-300";
+            }
+            if (activeStep >= 2) {
+                step2.className = "border border-teal-500/30 text-teal-400 bg-teal-500/5 rounded-lg py-1.5 shadow-[0_0_15px_rgba(45,212,191,0.05)] font-bold transition-all duration-300";
+            }
+            if (activeStep >= 3) {
+                step3.className = "border border-teal-500/30 text-teal-400 bg-teal-500/5 rounded-lg py-1.5 shadow-[0_0_15px_rgba(45,212,191,0.05)] font-bold transition-all duration-300";
+            }
+        }
+
+        // Helper to append console entries
+        function writeLog(text, step) {
+            const consoleBox = document.getElementById('console-stream');
+            const entry = document.createElement('div');
+            entry.innerHTML = text;
+            consoleBox.appendChild(entry);
+            consoleBox.scrollTop = consoleBox.scrollHeight;
+            if (step > 0) updateGlowState(step);
+        }
+
+        // Real Asynchronous API Fetch Scanner Script
+        async function executeBreachPointAudit() {
+            const targetInput = document.getElementById('target-input').value.trim();
+            const target = targetInput || 'localhost';
+            const consoleBox = document.getElementById('console-stream');
+            const scanBtn = document.getElementById('scan-btn');
+
+            switchTab('tab-dashboard');
+
+            // Disable button during execution
+            scanBtn.disabled = true;
+            scanBtn.className = "w-full bg-slate-900 border border-slate-800 text-slate-500 font-semibold text-xs tracking-wider uppercase py-3.5 px-4 rounded-xl cursor-not-allowed flex items-center justify-center gap-2";
+            scanBtn.innerHTML = `
+                <svg class="animate-spin -ml-1 mr-3 h-4 w-4 text-teal-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                  <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                  <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                </svg>
+                Active Scanning Pipeline...
+            `;
+
+            document.getElementById('no-results').classList.remove('hidden');
+            document.getElementById('scan-results').classList.add('hidden');
+            consoleBox.innerHTML = '';
+
+            // Step 1: Ingestion Output
+            writeLog(`<span class="text-teal-400">[info]</span> Initializing BreachPoint Core Engine v1.2...`, 1);
+            await delay(700);
+            writeLog(`<span class="text-teal-400">[info]</span> Step 1: Performing Target Domain Ingestion validation...`, 1);
+            await delay(800);
+
+            // Dynamic VM Host Endpoint mapping
+            const backendApiUrl = "/api/scan";
+
+            try {
+                const response = await fetch(backendApiUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ target: target })
+                });
+
+                if (!response.ok) throw new Error('VM server target resolution timed out.');
+
+                const data = await response.json();
+
+                // Step 2: Ingestion Resolution and Recon
+                writeLog(`<span class="text-slate-400">[+]</span> Target Scope validated successfully. resolved IP: <strong class="text-slate-200">${data.ip}</strong>`, 1);
+                await delay(900);
+                writeLog(`<span class="text-teal-400">[info]</span> Step 2: Commencing TCP active socket scan...`, 2);
+                await delay(1200);
+
+                if (data.findings.length === 0) {
+                    writeLog(`<span class="text-emerald-400">[+]</span> Target sweep complete. No common open ports detected.`, 2);
+                    await delay(800);
+                } else {
+                    for (const f of data.findings) {
+                        writeLog(`<span class="text-red-400">[ALERT]</span> PORT FOUND OPEN: <strong class="text-red-400">${f.port}</strong> (Service: ${f.service})`, 2);
+                        await delay(500);
+                    }
+                }
+
+                // Step 3: CVE matching
+                writeLog(`<span class="text-teal-400">[info]</span> Step 3: Executing vulnerability alignment logic...`, 3);
+                await delay(1000);
+                
+                let foundCveCount = 0;
+                for (const f of data.findings) {
+                    for (const c of f.cves) {
+                        foundCveCount++;
+                        writeLog(`<span class="text-red-400">[ALERT]</span> Vulnerability matched on ${f.port}: <strong class="text-red-400">${c.id}</strong> (CVSS: ${c.cvss})`, 3);
+                        await delay(500);
+                    }
+                }
+
+                writeLog(`<span class="text-emerald-400">[success]</span> Audit pipeline completed cleanly. Outputting parameters.`, 3);
+
+                // Update structural dashboard elements with real data
+                updateDashboard(data);
+
+            } catch (error) {
+                writeLog(`<span class="text-red-500">[ERROR]</span> Scan pipeline failed: ${error.message}`, 0);
+            } finally {
+                scanBtn.disabled = false;
+                scanBtn.className = "w-full bg-teal-500 text-slate-950 font-semibold text-xs tracking-wider uppercase py-3.5 px-4 rounded-xl hover:bg-teal-400 active:scale-[0.98] transition-all duration-200 flex items-center justify-center gap-2 shadow-lg shadow-teal-500/10";
+                scanBtn.innerHTML = `
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+                    Initialize BreachPoint Engine
+                `;
+            }
+        }
+
+        // Helper to map backend output directly to HTML elements
+        function updateDashboard(data) {
+            const scoreVal = document.getElementById('score-val');
+            const riskText = document.getElementById('risk-text');
+            const ring = document.getElementById('score-ring');
+            
+            scoreVal.innerText = data.score;
+            
+            const maxCircumference = 351.8;
+            const offset = maxCircumference - (data.score / 100) * maxCircumference;
+            ring.style.strokeDashoffset = offset;
+
+            // Handle dashboard colors based on score
+            if (data.score >= 80) {
+                ring.setAttribute('stroke', '#10b981'); // Emerald
+                riskText.className = "text-[9px] font-mono text-emerald-400 font-bold uppercase tracking-widest mt-0.5";
+                riskText.innerText = "SECURE POSTURE";
+            } else if (data.score >= 45) {
+                ring.setAttribute('stroke', '#f59e0b'); // Amber
+                riskText.className = "text-[9px] font-mono text-amber-400 font-bold uppercase tracking-widest mt-0.5";
+                riskText.innerText = "WARNING PROFILE";
+            } else {
+                ring.setAttribute('stroke', '#f43f5e'); // Rose
+                riskText.className = "text-[9px] font-mono text-red-400 font-bold uppercase tracking-widest mt-0.5";
+                riskText.innerText = "CRITICAL RISK";
+            }
+
+            // Ports Table Body mapping
+            const tableBody = document.getElementById('ports-table-body');
+            tableBody.innerHTML = ''; 
+
+            if (data.findings.length === 0) {
+                tableBody.innerHTML = `<tr><td colspan="4" class="py-4 text-center text-slate-500">All scanned ports are closed. Target secure.</td></tr>`;
+            } else {
+                data.findings.forEach(f => {
+                    const badgeColor = f.risk === 'High' ? 'bg-red-500/10 border-red-500/20 text-red-400' : 'bg-amber-500/10 border-amber-500/20 text-amber-400';
+                    tableBody.innerHTML += `
+                        <tr>
+                            <td class="py-3 text-white font-semibold">${f.port}</td>
+                            <td class="py-3 text-slate-400">TCP</td>
+                            <td class="py-3 text-slate-300">${f.service}</td>
+                            <td class="py-3 text-right"><span class="${badgeColor} border px-2 py-0.5 rounded text-[10px]">${f.risk}</span></td>
+                        </tr>
+                    `;
+                });
+            }
+
+            // CVE Cards mapping
+            const cveContainer = document.getElementById('cve-cards-container');
+            cveContainer.innerHTML = ''; 
+
+            let hasCves = false;
+            data.findings.forEach(f => {
+                f.cves.forEach(c => {
+                    hasCves = true;
+                    const cveColor = c.cvss >= 7.0 ? 'text-red-400' : 'text-amber-400';
+                    const badgeBg = c.cvss >= 7.0 ? 'bg-red-500/15' : 'bg-amber-500/15';
+                    cveContainer.innerHTML += `
+                        <div class="bg-slate-950/60 border border-slate-900 p-4 rounded-xl flex flex-col justify-between">
+                            <div>
+                                <div class="flex justify-between items-start mb-2">
+                                    <span class="font-mono text-sm font-bold ${cveColor}">${c.id}</span>
+                                    <span class="${badgeBg} ${cveColor} px-2 py-0.5 rounded text-[9px] font-mono font-bold">CVSS ${c.cvss}</span>
+                                </div>
+                                <p class="text-xs text-slate-300 leading-relaxed font-light mb-4">${c.summary}</p>
+                            </div>
+                            <div class="border-t border-slate-900/80 pt-3 flex justify-between items-center text-[10px] font-mono">
+                                <span class="text-slate-500">Service: ${f.service}</span>
+                                <span class="text-teal-400">Action: ${c.action}</span>
+                            </div>
+                        </div>
+                    `;
+                });
+            });
+
+            if (!hasCves) {
+                cveContainer.innerHTML = `<div class="col-span-2 text-center text-slate-500 py-6">No matching CVE mappings triggered for active ports. Target secure.</div>`;
+            }
+
+            // Unfold dashboard
+            document.getElementById('no-results').classList.add('hidden');
+            document.getElementById('scan-results').classList.remove('hidden');
+        }
+    </script>
+
+</body>
+</html>
