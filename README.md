@@ -330,6 +330,8 @@ BreachPoint processes targets through a robust three-stage pipeline:
 2. **Port Reconnaissance**: Scans for common ports (e.g., 80, 443, 22, 21) to identify active services and capture service banners (e.g., `Apache/2.4.41`, `OpenSSH 8.2`).
 3. **CVE Cross-Referencing**: Matches identified service versions against the **National Vulnerability Database (NVD)**. It flags known vulnerabilities, turning raw port data into prioritized security intelligence.
 
+https://github.com/zaynaldin/BreachPoint/blob/3a047a20f58759702918705316988a499d0bce02/images/Screenshot%202026-07-18%20131614.png
+
 ## 📊 Dashboard Overview
 
 The BreachPoint dashboard provides a comprehensive view of your target's security posture:
