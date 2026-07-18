@@ -322,7 +322,14 @@ Congratulations! You have successfully built, deployed, and secured a cloud-host
 
 This robust environment is now ready to host your web application securely under a custom domain name! 
 
-## 🚀 How BreachPoint Works
+
+
+
+
+
+
+
+##  How BreachPoint Works
 
 BreachPoint processes targets through a robust three-stage pipeline:
 
