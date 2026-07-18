@@ -342,7 +342,7 @@ The BreachPoint dashboard provides a comprehensive view of your target's securit
 * **Port Inventory**: A detailed table of open ports categorized by risk level.
 * **Live CVE Feed**: Real-time alerts for matched vulnerabilities.
 
-![Scan Results](https://raw.githubusercontent.com/zaynaldin/BreachPoint/3a047a20f58759702918705316988a499d0bce02/images/Screenshot%202026-07-18%20131614.png)
+![Scan Results](https://github.com/zaynaldin/BreachPoint/blob/6719307f46700641ad42c15b886103153c6d752b/images/Screenshot%202026-07-18%20132051.png)
 
 ## ☁️ Deployment
 
