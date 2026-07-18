@@ -322,11 +322,7 @@ Congratulations! You have successfully built, deployed, and secured a cloud-host
 
 This robust environment is now ready to host your web application securely under a custom domain name! 
 
-# 🛡️ BreachPoint
-
-BreachPoint is an automated security reconnaissance tool designed to identify potential vulnerabilities in domains and IP addresses. By streamlining the process from discovery to CVE identification, BreachPoint provides actionable insights into your perimeter security.
-
-## 🚀 How It Works
+## How does BreachPoint work?
 
 BreachPoint processes targets through a robust three-stage pipeline:
 
