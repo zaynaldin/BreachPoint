@@ -342,6 +342,8 @@ The BreachPoint dashboard provides a comprehensive view of your target's securit
 * **Port Inventory**: A detailed table of open ports categorized by risk level.
 * **Live CVE Feed**: Real-time alerts for matched vulnerabilities.
 
+![Scan Results](https://raw.githubusercontent.com/zaynaldin/BreachPoint/3a047a20f58759702918705316988a499d0bce02/images/Screenshot%202026-07-18%20131614.png)
+
 ## ☁️ Deployment
 
 BreachPoint is hosted on an **Azure VM** and secured via **HTTPS (Let's Encrypt)**, allowing for secure, remote scanning without the need for local installation.
