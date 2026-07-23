@@ -8,7 +8,7 @@ BreachPoint is a cloud-native security scanner hosted on Azure. It allows admini
 * **ID:** 35997081
 
 ### Video Explainer
-* **Video:** https://drive.google.com/file/d/1YBxNiGJfRLp1YtCYWoYYGu-djp7i2Ql-/view?usp=drive_link
+* **Video:** [https://drive.google.com/file/d/1YBxNiGJfRLp1YtCYWoYYGu-djp7i2Ql-/view?usp=drive_link](https://drive.google.com/file/d/1YBxNiGJfRLp1YtCYWoYYGu-djp7i2Ql-/view?usp=sharing)
 
 ### ☁️ Azure Deployment
 * **Domain:** [https://breachpoint.ddns.net/](https://breachpoint.ddns.net/)
